@@ -1,0 +1,16 @@
+/*
+/*/
+
+!.gitignore
+!.gitconfig
+
+!.bashrc
+!.bash_profile
+!.bash_login
+!.profile
+
+!.ssh/
+.ssh/*
+!.ssh/config
+!.ssh/authorized_keys
+
