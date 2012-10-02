@@ -108,6 +108,9 @@ export EDITOR
 source ~/.gitenvvars
 
 function parse_git_branch {
+  if [ "$(git rev-parse --show-toplevel)" = "$HOME" ]; then
+    return
+  fi
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
       branch=${ref#refs/heads/}
       echo " ("${branch:0:15}")"
