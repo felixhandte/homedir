@@ -116,7 +116,8 @@ function parse_git_branch {
       echo " ("${branch:0:15}")"
 }
 
-PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\[\033[0;31m\]\h\[\033[0m\]:\w\[\033[0;33m\]\$(parse_git_branch)\[\033[0m\]\$ "
+#PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\[\033[0;31m\]\h\[\033[0m\]:\w\[\033[0;33m\]\$(parse_git_branch)\[\033[0m\]\$ "
+PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\[\e[1;$((31 + $(hostname | cksum | cut -c1-3) % 6))m\]\h\[\e[0m\]:\w\[\033[0;33m\]\$(parse_git_branch)\[\033[0m\]\$ "
  
 #PS1="\[\033[0;31m\]\$(date +%H:%M) \w\[\033[0;33m\] 
 #\$(parse_git_branch)\[\033[0m\]\$ "
