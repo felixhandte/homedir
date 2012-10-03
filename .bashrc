@@ -102,6 +102,11 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+# Source Facebook definitions
+if [ -f /home/engshare/admin/scripts/master.bashrc ]; then
+        . /home/engshare/admin/scripts/master.bashrc
+fi
+
 EDITOR=nano
 export EDITOR
 
