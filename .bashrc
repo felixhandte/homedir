@@ -13,8 +13,8 @@ HISTCONTROL=ignoredups:ignorespace
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=100000
+HISTFILESIZE=200000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -107,8 +107,7 @@ if [ -f /home/engshare/admin/scripts/master.bashrc ]; then
         . /home/engshare/admin/scripts/master.bashrc
 fi
 
-EDITOR=nano
-export EDITOR
+export EDITOR=nano
 
 source ~/.gitenvvars
 
@@ -121,9 +120,18 @@ function parse_git_branch {
       echo " ("${branch:0:15}")"
 }
 
-#PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\[\033[0;31m\]\h\[\033[0m\]:\w\[\033[0;33m\]\$(parse_git_branch)\[\033[0m\]\$ "
-PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\[\e[1;$((31 + $(hostname | cksum | cut -c1-3) % 6))m\]\h\[\e[0m\]:\w\[\033[0;33m\]\$(parse_git_branch)\[\033[0m\]\$ "
- 
-#PS1="\[\033[0;31m\]\$(date +%H:%M) \w\[\033[0;33m\] 
-#\$(parse_git_branch)\[\033[0m\]\$ "
+function color_return {
+  ret=$?
+  if [ $ret = 0 ]; then
+    echo "0"
+  else
+    echo "31"
+  fi
+  #return $ret
+}
 
+PROMPT_COMMAND=""
+
+#PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\[\e[1;$((31 + $(hostname | cksum | cut -c1-3) % 6))m\]\h\[\e[0m\]:\w\[\033[0;33m\]\$(parse_git_branch)\[\033[0m\]\$ "
+#PS1="\u@\[\e[0;$((31 + $(hostname | cksum | cut -c1-3) % 6))m\]\h\[\e[0m\]:\w\[\e[0;33m\]\$(parse_git_branch)\[\e[0m\]\[\e[0;\$(color_return)m\]\$\[\e[0m\] "
+PS1="\[\e[0;\$(color_return)m\]\u\[\e[0m\]@\[\e[0;$((31 + $(hostname | cksum | cut -c1-3) % 6))m\]\h\[\e[0m\]:\w\[\e[0;33m\]\$(parse_git_branch)\[\e[0m\]\$ "
