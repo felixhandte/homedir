@@ -148,9 +148,9 @@ _dotfiles_scm_info()
   # we don't find one 
   if test -n "$hg" ; then 
     if test -f $hg/.hg/bookmarks.current ; then 
-      echo "`cat $hg/.hg/bookmarks.current` " 
+      echo " (`cat $hg/.hg/bookmarks.current`)" 
     elif test -f $hg/.hg/branch ; then 
-      echo "`cat $hg/.hg/branch` " 
+      echo " (`cat $hg/.hg/branch`)" 
     fi 
   elif test -n "$git" ; then 
     if test -f "$git/.git/HEAD" ; then 
