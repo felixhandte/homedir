@@ -120,6 +120,59 @@ function parse_git_branch {
       echo " ("${branch:0:15}")"
 }
 
+# Determines the "branch" of the current repo and emits it. 
+# For use in generating the prompt.
+# Avoids invoking "git" or "hg" for the sake of speed
+_dotfiles_scm_info() 
+{ 
+  # find out if we're in a git or hg repo by looking for the control dir 
+  local d git hg 
+  d="$PWD" 
+  while test "$d" != "/" ; do 
+    if test "$d" == "$HOME" ; then
+      break
+    fi
+    if test -d "$d/.git" ; then 
+      git="$d" 
+      break 
+    fi 
+    if test -d "$d/.hg" ; then 
+      hg="$d" 
+      break 
+    fi 
+    # portable "realpath" equivalent 
+    d=$(cd "$d/.." && echo $PWD) 
+  done 
+  # weird echo constructs are to force a suffix of a space character 
+  # in the case where we find a branch; we don't output anything if 
+  # we don't find one 
+  if test -n "$hg" ; then 
+    if test -f $hg/.hg/bookmarks.current ; then 
+      echo "`cat $hg/.hg/bookmarks.current` " 
+    elif test -f $hg/.hg/branch ; then 
+      echo "`cat $hg/.hg/branch` " 
+    fi 
+  elif test -n "$git" ; then 
+    if test -f "$git/.git/HEAD" ; then 
+      local head="`cat $git/.git/HEAD`" 
+      case "$head" in 
+        ref:\ refs/heads/*) 
+          if test -n "$ZSH_VERSION" ; then 
+            # older zsh doesn't support the bash substring syntax 
+            echo " ($head[17,-1])" 
+          else 
+            echo " (${head:16})" 
+          fi 
+        ;; 
+        *) 
+          # not sure what this is 
+          echo " ($head)" 
+        ;; 
+      esac 
+    fi 
+  fi
+}
+
 function color_return {
   ret=$?
   if [ $ret = 0 ]; then
@@ -134,4 +187,5 @@ PROMPT_COMMAND=""
 
 #PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\[\e[1;$((31 + $(hostname | cksum | cut -c1-3) % 6))m\]\h\[\e[0m\]:\w\[\033[0;33m\]\$(parse_git_branch)\[\033[0m\]\$ "
 #PS1="\u@\[\e[0;$((31 + $(hostname | cksum | cut -c1-3) % 6))m\]\h\[\e[0m\]:\w\[\e[0;33m\]\$(parse_git_branch)\[\e[0m\]\[\e[0;\$(color_return)m\]\$\[\e[0m\] "
-PS1="\[\e[0;\$(color_return)m\]\u\[\e[0m\]@\[\e[0;$((31 + $(hostname | cksum | cut -c1-3) % 6))m\]\h\[\e[0m\]:\w\[\e[0;33m\]\$(parse_git_branch)\[\e[0m\]\$ "
+#PS1="\[\e[0;\$(color_return)m\]\u\[\e[0m\]@\[\e[0;$((31 + $(hostname | cksum | cut -c1-3) % 6))m\]\h\[\e[0m\]:\w\[\e[0;33m\]\$(parse_git_branch)\[\e[0m\]\$ "
+PS1="\[\e[0;\$(color_return)m\]\u\[\e[0m\]@\[\e[0;$((31 + $(hostname | cksum | cut -c1-3) % 6))m\]\h\[\e[0m\]:\w\[\e[0;33m\]\$(_dotfiles_scm_info)\[\e[0m\]\$ "
