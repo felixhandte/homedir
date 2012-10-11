@@ -84,7 +84,7 @@ alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "Done: $(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -106,6 +106,31 @@ fi
 if [ -f /home/engshare/admin/scripts/master.bashrc ]; then
         . /home/engshare/admin/scripts/master.bashrc
 fi
+
+#get rid of lead www, etc
+alias tbgs='tbgs -i --stripdir'
+alias tbgr='tbgr -i --stripdir'
+alias fbgs='fbgs -i --stripdir'
+alias fbgr='fbgr -i --stripdir'
+alias obgs='obgs -i --stripdir'
+alias obgr='obgr -i --stripdir'
+alias cbgs='cbgs -i --stripdir'
+alias cbgr='cbgr -i --stripdir'
+
+#typo aliases
+alias cd..='cd ..'
+alias cit='git'
+alias gi='git'
+alias gti='git'
+alias gitst='git st'
+alias qgit='git'
+alias tgit='git'
+alias igt='git'
+
+alias gh='hg'
+alias hghg='hg'
+
+alias ls-la='ls -la'
 
 export EDITOR=nano
 
@@ -184,8 +209,4 @@ function color_return {
 }
 
 PROMPT_COMMAND=""
-
-#PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\[\e[1;$((31 + $(hostname | cksum | cut -c1-3) % 6))m\]\h\[\e[0m\]:\w\[\033[0;33m\]\$(parse_git_branch)\[\033[0m\]\$ "
-#PS1="\u@\[\e[0;$((31 + $(hostname | cksum | cut -c1-3) % 6))m\]\h\[\e[0m\]:\w\[\e[0;33m\]\$(parse_git_branch)\[\e[0m\]\[\e[0;\$(color_return)m\]\$\[\e[0m\] "
-#PS1="\[\e[0;\$(color_return)m\]\u\[\e[0m\]@\[\e[0;$((31 + $(hostname | cksum | cut -c1-3) % 6))m\]\h\[\e[0m\]:\w\[\e[0;33m\]\$(parse_git_branch)\[\e[0m\]\$ "
 PS1="\[\e[0;\$(color_return)m\]\u\[\e[0m\]@\[\e[0;$((31 + $(hostname | cksum | cut -c1-3) % 6))m\]\h\[\e[0m\]:\w\[\e[0;33m\]\$(_dotfiles_scm_info)\[\e[0m\]\$ "

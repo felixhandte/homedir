@@ -1,11 +1,67 @@
 [user]
-	name = "W. Felix Handte"
-	email = w@felixhandte.com
-	signingkey = F6B5FD67
+  name = "W. Felix Handte"
+  email = w@felixhandte.com
+  signingkey = F6B5FD67
 
 [merge]
-	tool = meld
+  tool = meld
 
 [alias]
-	gr = log --graph --full-history --all --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"
-	ci = commit -S -s
+  ah     = commit --amend -C HEAD
+  am     = amend
+  amq    = commit --amend -C HEAD
+  amendq = commit --amend -C HEAD
+  aq     = commit --amend -C HEAD
+  ar     = archive
+  bb     = bisect bad
+  bg     = bisect good
+  br     = branch
+  ca     = commit -a
+  ci     = commit
+  co     = checkout
+  com    = checkout master
+  cot    = checkout trunk
+  di     = diff
+  diffs  = diff --stat
+  diffq  = diff --stat
+  dfq    = diff --stat
+  dno    = diff --name-only
+  dq     = diff --stat
+  gr     = log --graph --full-history --all --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"
+  l      = log
+  lo     = log
+  logs   = log --stat
+  lu     = ls-files -o --exclude-standard
+  pi     = cherry-pick
+  pick   = cherry-pick
+  rb     = rebase
+  rbi    = rebase -i
+  sd     = svn dcommit
+  sl     = svn log
+  st     = status
+  showq  = show --stat
+  shows  = show --stat
+  sq     = show --stat
+  ss     = show --stat
+  stat   = diff --stat
+  tst    = status
+
+  ab     = !git-active-branches
+  arb    = !git-archive-branch
+  au     = !git-add-untracked
+  coc    = !git-checkout-clean
+  cp     = !git-checkpoint
+  f      = !git-files
+  fm     = !git-files-modified
+  iu     = !git-ignore-untracked
+  ki     = !git-kill
+  pu     = !git-pull-master
+  ra     = !git-rebase-active
+  rem    = !git-remaster
+  rt     = !git-root-dir
+  sbr    = !git-say-branch
+  sr     = !git-svn-rev
+  uf     = !git-untracked-files
+  up     = !git-up-branch
+  vn     = !git-root-svn
+
