@@ -14,3 +14,8 @@
 !.ssh/config
 !.ssh/authorized_keys
 
+!bin/
+bin/ncsvc
+bin/ncui
+bin/sublime_text
+bin/vpn-connect

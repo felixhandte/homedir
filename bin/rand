@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [[ "$1" == "" ]]; then
+        echo "Requires number of bytes argument."
+        exit
+fi
+
+od -tx1 -An -N$1 </dev/random | tr -d ' \n'
+echo ""

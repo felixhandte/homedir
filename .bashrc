@@ -107,6 +107,12 @@ if [ -f /home/engshare/admin/scripts/master.bashrc ]; then
         . /home/engshare/admin/scripts/master.bashrc
 fi
 
+# include CUDA toolkit
+if [ -d "/usr/local/cuda" ] ; then
+    export PATH="$PATH:/usr/local/cuda/bin"
+    export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib:/usr/local/cuda/lib64"
+fi
+
 #get rid of lead www, etc
 alias tbgs='tbgs -i --stripdir'
 alias tbgr='tbgr -i --stripdir'
@@ -120,6 +126,7 @@ alias cbgr='cbgr -i --stripdir'
 #typo aliases
 alias cd..='cd ..'
 alias cit='git'
+alias g='git'
 alias gi='git'
 alias gti='git'
 alias gitst='git st'
@@ -131,6 +138,8 @@ alias gh='hg'
 alias hghg='hg'
 
 alias ls-la='ls -la'
+
+alias findn='find . -name'
 
 export EDITOR=nano
 
