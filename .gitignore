@@ -3,6 +3,7 @@
 
 !.gitignore
 !.gitconfig
+!.githomedirmarker
 
 !.bashrc
 !.bash_profile

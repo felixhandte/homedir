@@ -163,7 +163,7 @@ _dotfiles_scm_info()
     local d git hg
     d="$PWD"
     while test "$d" != "/" ; do
-        if test "$d" == "$HOME" ; then
+        if [ -f "$d/.githomedirmarker" ] ; then
             break
         fi
         if test -d "$d/.git" ; then
@@ -190,6 +190,9 @@ _dotfiles_scm_info()
         if test -f "$git/.git/HEAD" ; then
             local head="`cat $git/.git/HEAD`"
             case "$head" in
+                ref:\ refs/heads/master)
+                    echo " (m)"
+                    ;;
                 ref:\ refs/heads/*)
                     if test -n "$ZSH_VERSION" ; then
                         # older zsh doesn't support the bash substring syntax
