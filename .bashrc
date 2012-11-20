@@ -113,15 +113,15 @@ if [ -d "/usr/local/cuda" ] ; then
     export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib:/usr/local/cuda/lib64"
 fi
 
-#get rid of lead www, etc
-alias tbgs='tbgs -i --stripdir'
-alias tbgr='tbgr -i --stripdir'
-alias fbgs='fbgs -i --stripdir'
-alias fbgr='fbgr -i --stripdir'
-alias obgs='obgs -i --stripdir'
-alias obgr='obgr -i --stripdir'
-alias cbgs='cbgs -i --stripdir'
-alias cbgr='cbgr -i --stripdir'
+# #get rid of lead www, etc
+# alias tbgs='tbgs -i --stripdir'
+# alias tbgr='tbgr -i --stripdir'
+# alias fbgs='fbgs -i --stripdir'
+# alias fbgr='fbgr -i --stripdir'
+# alias obgs='obgs -i --stripdir'
+# alias obgr='obgr -i --stripdir'
+# alias cbgs='cbgs -i --stripdir'
+# alias cbgr='cbgr -i --stripdir'
 
 #typo aliases
 alias cd..='cd ..'
