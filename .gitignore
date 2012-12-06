@@ -9,6 +9,7 @@
 !.bash_profile
 !.bash_login
 !.profile
+!.inputrc
 
 !.ssh/
 .ssh/*
@@ -21,6 +22,7 @@ bin/*
 !bin/slime
 !bin/color
 !bin/jsonpp
+!bin/clone_prog
 
 !docs
 !dls

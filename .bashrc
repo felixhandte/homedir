@@ -145,13 +145,17 @@ export EDITOR=nano
 
 source ~/.gitenvvars
 
-function parse_git_branch {
+function _parse_git_branch {
     if [ "$(git rev-parse --show-toplevel 2>/dev/null)" = "$HOME" ]; then
         return
     fi
     ref=$(git symbolic-ref HEAD 2> /dev/null) || return
         branch=${ref#refs/heads/}
-        echo " ("${branch:0:15}")"
+	if [ "$branch" = "master" ]; then
+		echo " (m)"
+	else
+	        echo " ("${branch:0:15}")"
+	fi
 }
 
 # Determines the "branch" of the current repo and emits it.
@@ -221,4 +225,4 @@ function _color_return {
 }
 
 PROMPT_COMMAND=""
-PS1="\[\e[0;\$(_color_return)m\]\u\[\e[0m\]@\[\e[0;$((31 + $(hostname | cksum | cut -c1-3) % 6))m\]\h\[\e[0m\]:\w\[\e[0;33m\]\$(_dotfiles_scm_info)\[\e[0m\]\$ "
+PS1="\[\e[0;\$(_color_return)m\]\u\[\e[0m\]@\[\e[0;$((31 + $(hostname | cksum | cut -c1-3) % 6))m\]\h\[\e[0m\]:\w\[\e[0;33m\]\$(_parse_git_branch)\[\e[0m\]\$ "
