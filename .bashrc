@@ -142,9 +142,7 @@ alias ls-la='ls -la'
 alias findn='find . -name'
 
 function follow() {
-	mkdir -p ${@: -1}
-	mv "$@"
-	cd ${@: -1}
+	mkdir -p ${@: -1} && mv "$@" &&	cd ${@: -1}
 }
 
 export EDITOR=nano
