@@ -140,6 +140,7 @@ alias hghg='hg'
 alias ls-la='ls -la'
 
 alias findn='find . -name'
+alias install='sudo apt-get install'
 
 function follow() {
 	mkdir -p ${@: -1} && mv "$@" &&	cd ${@: -1}
