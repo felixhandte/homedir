@@ -137,6 +137,12 @@ alias igt='git'
 alias gh='hg'
 alias hghg='hg'
 
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+
 alias ls-la='ls -la'
 
 alias findn='find . -name'
@@ -148,7 +154,9 @@ function follow() {
 
 export EDITOR=nano
 
-source ~/.gitenvvars
+if [ -f ~/.gitenvvars ]; then
+	. ~/.gitenvvars
+fi
 
 function _parse_git_branch {
     if [ "$(git rev-parse --show-toplevel 2>/dev/null)" = "$HOME" ]; then

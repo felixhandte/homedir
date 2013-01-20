@@ -29,6 +29,8 @@
   dno    = diff --name-only
   dq     = diff --stat
   gr     = log --graph --full-history --all --color --pretty=tformat:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an)%x1b[0m"
+  ignore = update-index --assume-unchanged
+  unignore = update-index --no-assume-unchanged
   l      = log
   lo     = log
   logs   = log --stat

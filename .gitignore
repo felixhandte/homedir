@@ -23,6 +23,7 @@ bin/*
 !bin/color
 !bin/jsonpp
 !bin/clone_prog
+!bin/jq
 
 !docs
 !dls
