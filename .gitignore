@@ -10,6 +10,7 @@
 !.bash_login
 !.profile
 !.inputrc
+!.bash_complete_aliases
 
 !.ssh/
 .ssh/*
