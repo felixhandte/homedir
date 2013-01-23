@@ -223,7 +223,7 @@ _dotfiles_scm_info()
                     ;;
                 *)
                     # not sure what this is
-                    echo " ($head)"
+                    echo " (${head:7})"
                     ;;
             esac
         fi
@@ -241,4 +241,11 @@ function _color_return {
 }
 
 PROMPT_COMMAND=""
-PS1="\[\e[0;\$(_color_return)m\]\u\[\e[0m\]@\[\e[0;$((31 + $(hostname | cksum | cut -c1-3) % 6))m\]\h\[\e[0m\]:\w\[\e[0;33m\]\$(_parse_git_branch)\[\e[0m\]\$ "
+
+if [ "`id -u`" -eq 0 ]; then
+    END='#'
+else
+    END='$'
+fi
+
+PS1="\[\e[0;\$(_color_return)m\]\u\[\e[0m\]@\[\e[0;$((31 + $(hostname | cksum | cut -c1-3) % 6))m\]\h\[\e[0m\]:\w\[\e[0;33m\]\$(_dotfiles_scm_info)\[\e[0m\]$END "
