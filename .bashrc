@@ -173,6 +173,9 @@ fi
 # The following needs to run after any aliases you want to get completion.
 source ~/.bash_complete_aliases
 
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+
 function _parse_git_branch {
     if [ "$(git rev-parse --show-toplevel 2>/dev/null)" = "$HOME" ]; then
         return
