@@ -25,6 +25,7 @@ bin/*
 !bin/jsonpp
 !bin/clone_prog
 !bin/jq
+!bin/dtrx
 
 !docs
 !dls
