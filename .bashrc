@@ -113,6 +113,11 @@ if [ -d "/usr/local/cuda" ] ; then
     export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib:/usr/local/cuda/lib64"
 fi
 
+# include OS X Git dir
+if [ -d "/usr/local/git/bin" ] ; then
+    export PATH="$PATH:/usr/local/git/bin"
+fi
+
 # #get rid of lead www, etc
 # alias tbgs='tbgs -i --stripdir'
 # alias tbgr='tbgr -i --stripdir'
