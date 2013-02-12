@@ -26,8 +26,3 @@ bin/*
 !bin/clone_prog
 !bin/jq
 !bin/dtrx
-
-!docs
-!dls
-!music
-!pics
