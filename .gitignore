@@ -26,3 +26,7 @@ bin/*
 !bin/clone_prog
 !bin/jq
 !bin/dtrx
+
+!apps/
+apps/*
+!apps/s3fs-1.61.tar.gz
