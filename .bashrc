@@ -168,6 +168,13 @@ function say() {
 	mplayer "http://translate.google.com/translate_tts?ie=UTF-8&tl=${lang}&q=${text}" &>/dev/null
 }
 
+function remake() {
+	while true
+	do
+		inotifywait -e modify *
+		make
+	done
+}
 
 export EDITOR=nano
 
