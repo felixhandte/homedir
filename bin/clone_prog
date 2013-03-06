@@ -1,0 +1,29 @@
+#!/bin/bash
+
+PROG_ROOT=$HOME/prog
+
+mkdir -p $PROG_ROOT
+
+function _clone_submodules {
+	pushd . >/dev/null
+	cd $1
+	git submodule init
+	git submodule update
+	popd >/dev/null
+}
+
+git clone git@github.com:felixhandte/Maze-Solver.git          "$PROG_ROOT/maze-solver"
+git clone git@github.com:felixhandte/Enigma.git               "$PROG_ROOT/enigma"
+
+git clone gitosis@git.felixhandte.com:gitosis-admin.git       "$PROG_ROOT/git/gitosis-admin"
+
+git clone git@git.felixhandte.com:gitolite-admin.git          "$PROG_ROOT/git/gitolite-admin"
+git clone git@git.felixhandte.com:ios-sms.git                 "$PROG_ROOT/ios-sms"
+git clone git@git.felixhandte.com:felixhandte-com.git         "$PROG_ROOT/web/fh.com"
+git clone git@git.felixhandte.com:rhythmbox-web-interface.git "$PROG_ROOT/web/rhythmbox-interface"
+git clone git@git.felixhandte.com:lightspeed-rts.git          "$PROG_ROOT/lightspeed-rts"
+git clone git@git.felixhandte.com:yana-breakout.git           "$PROG_ROOT/yana-breakout"
+git clone git@git.felixhandte.com:mmtcam.git                  "$PROG_ROOT/mmtcam"
+
+git clone git@git.felixhandte.com:rit.git                     "$PROG_ROOT/rit"
+_clone_submodules                                             "$PROG_ROOT/rit"

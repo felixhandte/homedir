@@ -26,6 +26,8 @@ bin/*
 !bin/clone_prog
 !bin/jq
 !bin/dtrx
+!bin/urlencode
+!bit/urldecode
 
 !apps/
 apps/*
