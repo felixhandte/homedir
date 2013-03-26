@@ -171,10 +171,13 @@ function say() {
 function remake() {
 	while true
 	do
-		inotifywait -e modify *
+		inotifywait -e modify * 2>&1
 		make
 	done
 }
+
+# Source: http://stackoverflow.com/questions/1763891/can-stdout-and-stderr-use-different-colors-under-xterm-konsole
+function colerr() (set -o pipefail;"$@" 2>&1>&3|sed $'s,.*,\e[31m&\e[m,'>&2)3>&1
 
 export EDITOR=nano
 
