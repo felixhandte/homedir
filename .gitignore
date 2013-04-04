@@ -27,7 +27,8 @@ bin/*
 !bin/jq
 !bin/dtrx
 !bin/urlencode
-!bit/urldecode
+!bin/urldecode
+!bin/dlphotos
 
 !apps/
 apps/*
