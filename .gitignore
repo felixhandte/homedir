@@ -11,6 +11,7 @@
 !.profile
 !.inputrc
 !.bash_complete_aliases
+!.dircolors
 
 !.ssh/
 .ssh/*

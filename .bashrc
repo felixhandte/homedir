@@ -108,14 +108,22 @@ fi
 # fi
 
 # include CUDA toolkit
-if [ -d "/usr/local/cuda" ] ; then
-    export PATH="$PATH:/usr/local/cuda/bin"
-    export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib:/usr/local/cuda/lib64"
+if [ -d "/usr/local/cuda-5.0" ] ; then
+    export PATH="$PATH:/usr/local/cuda-5.0/bin"
+    export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-5.0/lib:/usr/local/cuda-5.0/lib64"
 fi
 
 # include OS X Git dir
 if [ -d "/usr/local/git/bin" ] ; then
     export PATH="$PATH:/usr/local/git/bin"
+fi
+
+# include Android commands
+if [ -d "$HOME/prog/android/adt/sdk/tools" ] ; then
+    export PATH="$PATH:$HOME/prog/android/adt/sdk/tools"
+fi
+if [ -d "$HOME/prog/android/adt/sdk/platform-tools" ] ; then
+    export PATH="$PATH:$HOME/prog/android/adt/sdk/platform-tools"
 fi
 
 # #get rid of lead www, etc
