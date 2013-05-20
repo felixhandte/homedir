@@ -1,0 +1,46 @@
+#!/usr/bin/env python
+
+import os
+import re
+import subprocess
+
+PDESTROOT = "/mnt/sshfs/thor/data/pictures/Photography"
+VDESTROOT = "/mnt/sshfs/thor/data/footage/raw"
+PRORESDESTROOT = "/mnt/sshfs/thor/data/footage/prores"
+SDESTROOT = "/mnt/sshfs/thor/data/footage/raw"
+CAMSRCROOT = "/media/felix/EOS_DIGITAL/DCIM"
+SNDSRCROOT = "/media/felix/H4N_SD"
+
+FFMPEG = "/usr/local/bin/ffmpeg"
+
+SOURCE_SELECTION_RE = re.compile(r'.*\.MOV$', re.I)
+SOURCE_TO_DESTINATION_RE = re.compile(r'^' + VDESTROOT)
+
+source_files = []
+for root, dirs, files in os.walk(VDESTROOT):
+	source_files.extend(os.path.join(root, f) for f in files if SOURCE_SELECTION_RE.match(f))
+
+source_files = sorted(source_files)
+
+num_cur_file = 1
+num_total_files = len(source_files)
+
+for f in source_files:
+	of = re.sub(SOURCE_TO_DESTINATION_RE, PRORESDESTROOT, f)
+	if not os.path.exists(os.path.dirname(of)):
+		os.makedirs(os.path.dirname(of))
+	if not os.path.exists(of):
+		print "Copying  (%5d/%5d) %s -> %s" % (num_cur_file, num_total_files, f, of)
+		subprocess.call([
+			FFMPEG,
+			"-i", f,
+			#"-loglevel", "quiet",
+			"-vcodec", "prores",
+			"-profile:v", "2",
+			"-threads", "12",
+			"-acodec", "copy",
+			of
+		])
+	else:
+		print "Skipping (%5d/%5d) %s -> %s" % (num_cur_file, num_total_files, f, of)
+	num_cur_file += 1

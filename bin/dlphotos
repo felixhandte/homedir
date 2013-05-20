@@ -2,15 +2,18 @@
 
 PDESTROOT=/mnt/sshfs/thor/data/pictures/Photography
 VDESTROOT=/mnt/sshfs/thor/data/footage/raw
+PRORESDESTROOT=/home/felix/Videos/prores
 SDESTROOT=/mnt/sshfs/thor/data/footage/raw
 CAMSRCROOT=/media/felix/EOS_DIGITAL/DCIM
 SNDSRCROOT=/media/felix/H4N_SD
+
+FFMPEG=/usr/local/bin/ffmpeg
 
 function copy_files() {
 	PATTERN=$1
 	SRC=$2
 	DEST=$3
-	find $SRC -name $PATTERN | \
+	find $SRC -name "$PATTERN" | sort | \
 	( while read SRCPATH; do
 		if [[ $SRCPATH =~ ^.*\.wav$ ]]; then
 			SRCDATE=$(exiftool $SRCPATH | sed -n 's/^File Modification Date\/Time *: \([0-9]\{4\}\):\([0-1][0-9]\):\([0-3][0-9]\) \([0-2][0-9]\):\([0-5][0-9]\):\([0-5][0-9]\)\([-+][0-2][0-9]:[0-5][0-9]\)\{0,1\}/\1\2\3/p')
@@ -38,6 +41,7 @@ function copy_files() {
 				cp --preserve=timestamps "$SRCPATH" "$DESTPATH"
 				break
 			else
+				echo "THIS DOESN'T WORK"
 				SRCHASH="$(sha256sum < "$SRCPATH")" &
 				DESTHASH="$(sha256sum < "$DESTPATH")" &
 				wait
@@ -53,13 +57,13 @@ function copy_files() {
 }
 
 if [ -e "${CAMSRCROOT}" ]; then
-	copy_files \*.JPG "${CAMSRCROOT}" "${PDESTROOT}"
-	copy_files \*.MOV "${CAMSRCROOT}" "${VDESTROOT}"
+	copy_files '*.JPG' "${CAMSRCROOT}" "${PDESTROOT}"
+	copy_files '*.MOV' "${CAMSRCROOT}" "${VDESTROOT}"
 else
 	echo "Nothing mounted to ${CAMSRCROOT}."
 fi
 if [ -e "${SNDSRCROOT}" ]; then
-	copy_files \*.wav "${SNDSRCROOT}" "${SDESTROOT}"
+	copy_files '*.wav' "${SNDSRCROOT}" "${SDESTROOT}"
 else
 	echo "Nothing mounted to ${SNDSRCROOT}."
 fi

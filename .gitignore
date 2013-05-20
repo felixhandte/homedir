@@ -30,6 +30,7 @@ bin/*
 !bin/urlencode
 !bin/urldecode
 !bin/dlphotos
+!bin/conv_to_prores
 
 !apps/
 apps/*
