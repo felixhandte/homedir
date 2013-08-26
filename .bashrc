@@ -126,6 +126,12 @@ if [ -d "$HOME/prog/android/adt/sdk/platform-tools" ] ; then
     export PATH="$PATH:$HOME/prog/android/adt/sdk/platform-tools"
 fi
 
+# include commands for RIT CSCI-250
+if [ -d "/home/fac/wrc/bin" ] ; then
+    export PATH="$PATH:/home/fac/wrc/bin"
+fi
+
+
 # #get rid of lead www, etc
 # alias tbgs='tbgs -i --stripdir'
 # alias tbgr='tbgr -i --stripdir'
