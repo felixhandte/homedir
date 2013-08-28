@@ -130,6 +130,12 @@ fi
 if [ -d "/home/fac/wrc/bin" ] ; then
     export PATH="$PATH:/home/fac/wrc/bin"
 fi
+if [ -d "/usr/local/dcs/jdk/bin" ] ; then
+    export PATH="/usr/local/dcs/jdk/bin:$PATH"
+fi
+if [ -d "/usr/local/dcs/bin" ] ; then
+    export PATH="/usr/local/dcs/bin:$PATH"
+fi
 
 
 # #get rid of lead www, etc
