@@ -31,6 +31,7 @@ bin/*
 !bin/urldecode
 !bin/dlphotos
 !bin/conv_to_prores
+!bin/raw_conv
 
 !apps/
 apps/*

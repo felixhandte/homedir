@@ -107,6 +107,11 @@ fi
 #     . /home/engshare/admin/scripts/master.bashrc
 # fi
 
+# include my bin dir
+if [ -d "$HOME/bin" ] ; then
+    export PATH="$PATH:$HOME/bin"
+fi
+
 # include CUDA toolkit
 if [ -d "/usr/local/cuda-5.0" ] ; then
     export PATH="$PATH:/usr/local/cuda-5.0/bin"

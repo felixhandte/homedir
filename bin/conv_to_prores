@@ -16,11 +16,45 @@ FFMPEG = "/usr/local/bin/ffmpeg"
 SOURCE_SELECTION_RE = re.compile(r'.*\.MOV$', re.I)
 SOURCE_TO_DESTINATION_RE = re.compile(r'^' + VDESTROOT)
 
-source_files = []
-for root, dirs, files in os.walk(VDESTROOT):
-	source_files.extend(os.path.join(root, f) for f in files if SOURCE_SELECTION_RE.match(f))
+# source_files = []
+# for root, dirs, files in os.walk(VDESTROOT):
+# 	source_files.extend(os.path.join(root, f) for f in files if SOURCE_SELECTION_RE.match(f))
 
-source_files = sorted(source_files)
+# source_files = sorted(source_files)
+
+source_files = [
+	"/mnt/sshfs/thor/data/footage/raw/20130615/7A2A0353.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130615/7A2A0365.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130615/7A2A0370.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130615/7A2A0376.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130615/7A2A0384.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130615/7A2A0387.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130615/7A2A0397.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130615/7A2A0404.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130615/7A2A0436.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130615/7A2A0448.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130615/7A2A0475.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130615/7A2A0609.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130615/7A2A0612.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130616/7A2A0617.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130616/7A2A0621.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130616/7A2A0629.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130616/7A2A0645.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130616/7A2A0648.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130616/7A2A0654.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130616/7A2A0658.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130616/7A2A0659.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130616/7A2A0660.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130616/7A2A0661.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130616/7A2A0662.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130616/7A2A0663.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130616/7A2A0664.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130616/7A2A0665.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130616/7A2A0666.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130616/7A2A0669.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130617/7A2A0693.MOV",
+	"/mnt/sshfs/thor/data/footage/raw/20130617/7A2A0709.MOV"
+]
 
 num_cur_file = 1
 num_total_files = len(source_files)
@@ -30,7 +64,7 @@ for f in source_files:
 	if not os.path.exists(os.path.dirname(of)):
 		os.makedirs(os.path.dirname(of))
 	if not os.path.exists(of):
-		print "Copying  (%5d/%5d) %s -> %s" % (num_cur_file, num_total_files, f, of)
+		print "Converting (%5d/%5d) %s -> %s" % (num_cur_file, num_total_files, f, of)
 		subprocess.call([
 			FFMPEG,
 			"-i", f,
@@ -42,5 +76,5 @@ for f in source_files:
 			of
 		])
 	else:
-		print "Skipping (%5d/%5d) %s -> %s" % (num_cur_file, num_total_files, f, of)
+		print "Skipping   (%5d/%5d) %s -> %s" % (num_cur_file, num_total_files, f, of)
 	num_cur_file += 1
