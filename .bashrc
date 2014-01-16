@@ -115,7 +115,7 @@ fi
 # include CUDA toolkit
 if [ -d "/usr/local/cuda-5.0" ] ; then
     export PATH="$PATH:/usr/local/cuda-5.0/bin"
-    export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-5.0/lib:/usr/local/cuda-5.0/lib64"
+    export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}/usr/local/cuda-5.0/lib:/usr/local/cuda-5.0/lib64"
 fi
 
 # include OS X Git dir
