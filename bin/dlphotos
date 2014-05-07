@@ -1,7 +1,8 @@
 #!/bin/bash
 
 PDESTROOT=/mnt/sshfs/thor/data/pictures/Photography
-VDESTROOT=/media/felix/NTFSData/nightmare-scouting/non-raw-footage
+VDESTROOT=/mnt/sshfs/thor/data/footage/raw
+#VDESTROOT=/media/felix/NTFSData/nightmare-scouting/non-raw-footage
 SDESTROOT=/media/felix/NTFSData/nightmare-scouting/sound
 CAMSRCROOT=/media/felix/EOS_DIGITAL/DCIM
 SNDSRCROOT=/media/felix/H4N_SD

@@ -5,7 +5,7 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# don't put duplicate lines in the history. See bash(1) for more options
+# don't put duplicate lines in the history. See bash(1) for more options 
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
 
@@ -211,7 +211,7 @@ if [ -f ~/.gitenvvars ]; then
 fi
 
 # The following needs to run after any aliases you want to get completion.
-source ~/.bash_complete_aliases
+# source ~/.bash_complete_aliases
 
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
