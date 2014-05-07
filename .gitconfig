@@ -68,3 +68,5 @@
   up     = !git-up-branch
   vn     = !git-root-svn
 
+[push]
+  default = matching
