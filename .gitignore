@@ -35,4 +35,4 @@ bin/*
 
 !apps/
 apps/*
-!apps/s3fs-1.61.tar.gz
+!apps/s3fs-1.74.tar.gz
